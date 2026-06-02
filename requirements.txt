@@ -7,3 +7,4 @@ langchain-text-splitters
 pymupdf
 python-dotenv
 pydantic
+protobuf<5.0.0
