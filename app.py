@@ -28,13 +28,15 @@ INPUT_DIR = "Input"
 
 @st.cache_resource
 def get_embeddings():
-    if not os.getenv("GEMINI_API_KEY"):
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
         st.error("GEMINI_API_KEY is missing in environment variables.")
         st.stop()
-    return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
+    return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=api_key)
 
 def get_llm():
-    return ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    api_key = os.getenv("GEMINI_API_KEY")
+    return ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key)
 
 # --- UI Setup ---
 
